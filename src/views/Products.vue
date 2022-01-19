@@ -1,49 +1,44 @@
 <template>
     <main>
-        <div>
-            <div class="product-type">
-                <!-- TODO: Dynamic Cards -->
-                <h3>Business Cards</h3>
-                <div class="product-image">
-                    <img src="https://www.fillmurray.com/200/200" />
-                </div>
+        <h1>Product Builder</h1>
+        <h2>Choose a product to start</h2>
+        <img src="https://www.fillmurray.com/200/200" />
+        <h3>{{flyers.titlePlural}}</h3>
+        <p><strong>Flyer Properties</strong></p>
+        <ul v-for="property in flyers.properties" :key="property.id">
+            <div class="product-option">
+            <li>
+                <label>Choose a {{property.title}}</label>
+                <select v-model="selected">
+                    <option v-for="option in property.options" :key="option.id">{{option.slug}}</option>
+                </select>
+            </li>
             </div>
-            <div class="product-type">
-                <h3>Flyers</h3>
-                <div class="product-image">
-                    <img src="https://www.fillmurray.com/200/200" />
-                </div>
-            </div>
-            <div class="product-type">
-                <h3>Posters</h3>
-                <div class="product-image">
-                    <img src="https://www.fillmurray.com/200/200" />
-                </div>
-            </div>
-        </div>
+        </ul>
     </main>
 </template>
 
 <script>
-    import flyers from '../json/flyers.json'
-    import businessCards from '../json/businesscards.json'
-    import posters from '../json/posters.json'
-
+    import Flyers from '../json/flyers.json'
     export default {
+        name: 'Products',
+        components: {
+        },
         data() {
             return {
-                flyers: flyers,
-                businessCards: businessCards,
-                posters: posters
+                 flyers: Flyers
             }
-        }
-        
+        },
     }
 </script>
 
 
 <style scoped>
-    .product-type {
+    li {
+        list-style: none;
+        border: 1px solid black;
+    }   
+    .product-option {
         display: inline-block;
         margin: 15px;
     }

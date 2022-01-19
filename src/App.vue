@@ -1,22 +1,35 @@
 <template>
-  <header>
-    <nav>
-      <router-link to="/">
-        <span>Home</span>
-      </router-link>
-      <router-link to="/products">
-        <span>Products</span>
-      </router-link>
-    </nav>
-    <div>
-      <span>Cart</span>
-    </div>
-    <router-view />
-  </header>
-
+  <div id="app">
+    <header>
+      <nav>
+        <router-link to="/">
+          <span>Home</span>
+        </router-link>
+        <router-link to="/products">
+          <span>Products</span>
+        </router-link>
+      </nav>
+      <div>
+        <span>Cart</span>
+      </div>
+      <router-view />
+    </header>
+  </div>
 </template>
 
 <script>
+  import flyers from './json/flyers.json'
+  export default {
+    name: 'App',
+    data() {
+      return {
+        inventory: flyers
+      }
+    },
+    components: {
+      
+    }
+  }
 
 </script>
 

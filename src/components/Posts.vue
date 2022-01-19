@@ -1,11 +1,19 @@
 <template>
+    <div class="product-type">
+        <h2>{{sku}}</h2>
+    </div>
+
 </template>
 <script>
-import {ref, computed, onMounted} from "vue";
+// add computed here when needed for calculating cart
+import {ref, onMounted} from "vue";
 export default {
     name: 'Posts',
+    components: {
+        Posts
+    },
     props: {
-
+        
     },
     setup() {
         const data = ref(null);
