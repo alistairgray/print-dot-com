@@ -9,21 +9,32 @@
           <span>Products</span>
         </router-link>
       </nav>
-      <div>
+      <div id="cart">
         <span>Cart</span>
       </div>
-      <router-view />
+      <router-view/>
     </header>
+    <main>
+      <h1>Frequent Flyers</h1>
+      <div id="launch">
+       <h3>Launch your flyers today ... </h3>
+      </div>
+    </main>
   </div>
 </template>
 
 <script>
   import flyers from './json/flyers.json'
+  import global from './global'
   export default {
     name: 'App',
+    setup() {
+      const {state} = global;
+      return {state}
+    },
     data() {
       return {
-        inventory: flyers
+        inventory: flyers,
       }
     },
     components: {
@@ -38,8 +49,36 @@
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  color: #fff;
+  background: url('./assets/color-background-ff.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
+main {
+  text-align: center;
+}
+main h1 {
+  font-size: 115pt;
+}
+nav {
+  max-height: 200px;
+}
+a {
+  margin-right: 15px;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+#cart {
+  text-align: right;
+  margin-right: 15px;
+}
+#launch {
+  border: 7px dashed #AE8799;
+  max-width: 150px;
+  margin: 0 auto;
+}
+
 </style>
