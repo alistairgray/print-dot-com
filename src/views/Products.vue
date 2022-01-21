@@ -2,16 +2,14 @@
     <main>
         <h2>Choose a product to start</h2>
         <h3>{{flyers.titlePlural}}</h3>
-        <p><strong>Flyer Properties</strong></p>
         <ul>
-            <div class="product-option">
-            <li v-for="property in flyers.properties" :key="property.id">
-                <label>Choose a {{property.slug}}</label>
-                <br />
-                <select v-model="selected">
-                    <option v-for="option in property.options" :key="option.id">{{option.slug}}</option>
-                </select>
-            </li>
+            <div>
+                <div v-for="(property, index) in flyers.properties" :key="property.id" :selected="index">
+                    <div class="flyer-property"><h2>Select your {{property.slug}}</h2></div>
+                    <div @click="addToCart(property.slug, option.name)" class="flyer-option" v-for="option in property.options" :key="option.id">
+                        <div class="flyer-unselected"><p>{{option.name}}</p></div>
+                    </div>
+                </div>
             </div>
         </ul>
     </main>
@@ -27,23 +25,47 @@
             return {
                  flyers: Flyers,
                  flyerOptions: {
-                     size: ''
+                     
                  },
                  cart: {}
             }
         },
         methods: {
-
+            addToCart(propName, optionName) {
+                this.flyerOptions = {
+                    propName
+                }
+                this.flyerOptions.propName = optionName
+            }
         }
     }
 </script>
 
 
 <style scoped>
-    li {
-        list-style: none;
-        border: 7px dashed yellow;
+    .flyer-property {
+        
+    }
+    .flyer-option {
         display: inline-block;
-        margin: 15px;
-    }   
+        border: 3px solid white;
+        min-width: 100px;
+        max-width: 120px;
+        margin: 5px;
+        padding: 5px;
+        border-radius: 15px;
+    }
+    .flyer-option:hover {
+        background: white;
+        color: navy;
+        border: 3px solid navy;
+    }
+    .flyer-option-selected {
+        background: white;
+        color: navy;
+        border: 3px  navy;
+    }
+    .flyer-option-hidden {
+        display: none;
+    }
 </style>

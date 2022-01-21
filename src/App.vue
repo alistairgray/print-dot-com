@@ -17,7 +17,9 @@
     <main>
       <h1>Frequent Flyers</h1>
       <div id="launch">
-       <h3>Launch your flyers today ... </h3>
+        <router-link to="/products">
+          <h3>Launch your flyers today ... </h3>
+       </router-link>
       </div>
     </main>
   </div>
@@ -65,15 +67,17 @@ nav {
   max-height: 200px;
 }
 a {
-  margin-right: 15px;
+  margin-left: 15px;
   text-decoration: none;
+  color: #fff;
 }
 a:hover {
   text-decoration: underline;
 }
 #cart {
-  text-align: right;
+  float: right;
   margin-right: 15px;
+  position: relative;
 }
 #launch {
   border: 7px dashed #AE8799;
