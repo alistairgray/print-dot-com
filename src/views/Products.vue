@@ -2,10 +2,12 @@
     <main>
         <h2>Choose a product to start</h2>
         <h3>{{flyers.titlePlural}}</h3>
-        <ul>
+        <div class="flyer-options-selection">
+            <div class="flyer-options-selected" v-for="property in flyers.properties" :key="property.id">Flyer {{property.slug}}: {{cart[property.slug]}}</div>
+        </div>
             <div>
-                <div v-for="(property, index) in flyers.properties" :key="property.id" ref="index">
-                    <div class="flyer-property"><h2>Select your {{property.slug}}</h2><p>Selected: {{cart.size}}</p></div>
+                <div v-for="(property, index) in flyers.properties" :key="property.id" :selected="index" ref="index">
+                    <div class="flyer-property"><h2>Select your {{property.slug}}</h2></div>
                     <div @click="
                         addToCart(property.slug, option.name); 
                         removeOptions(index)" 
@@ -16,7 +18,6 @@
                     </div>
                 </div>
             </div>
-        </ul>
     </main>
 </template>
 
@@ -39,8 +40,8 @@
             },
             removeOptions(selected) {
                 console.log(`DIV Number ${selected} selected!`);
-                console.log();
-                this.$refs.selected.style.display = "none";
+                console.log(this.$refs.index[selected].style.display = "none");
+                
             }
         }
     }
@@ -49,7 +50,7 @@
 
 <style scoped>
 
-    .flyer-option {
+    .flyer-option, .flyer-options-selected{
         display: inline-block;
         border: 3px solid white;
         min-width: 100px;
@@ -62,10 +63,5 @@
         background: white;
         color: navy;
         border: 3px solid navy;
-    }
-    .flyer-option-selected {
-        background: white;
-        color: navy;
-        border: 3px  navy;
     }
 </style>
