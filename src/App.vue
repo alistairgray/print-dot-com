@@ -12,7 +12,7 @@
       <div id="cart">
         <span>Cart</span>
       </div>
-      <router-view/>
+      
     </header>
     <main>
       <h1>Frequent Flyers</h1>
@@ -22,6 +22,7 @@
        </router-link>
       </div>
     </main>
+    <router-view/>
   </div>
 </template>
 

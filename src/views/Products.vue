@@ -4,9 +4,14 @@
         <h3>{{flyers.titlePlural}}</h3>
         <ul>
             <div>
-                <div v-for="(property, index) in flyers.properties" :key="property.id" :selected="index">
-                    <div class="flyer-property"><h2>Select your {{property.slug}}</h2></div>
-                    <div @click="addToCart(property.slug, option.name)" class="flyer-option" v-for="option in property.options" :key="option.id">
+                <div v-for="(property, index) in flyers.properties" :key="property.id" ref="index">
+                    <div class="flyer-property"><h2>Select your {{property.slug}}</h2><p>Selected: {{cart.size}}</p></div>
+                    <div @click="
+                        addToCart(property.slug, option.name); 
+                        removeOptions(index)" 
+                        class="flyer-option" 
+                        v-for="option in property.options" :key="option.id"
+                        >
                         <div class="flyer-unselected"><p>{{option.name}}</p></div>
                     </div>
                 </div>
@@ -23,19 +28,19 @@
         },
         data() {
             return {
-                 flyers: Flyers,
-                 flyerOptions: {
-                     
-                 },
-                 cart: {}
+                flyers: Flyers,
+                cart: {}
             }
         },
         methods: {
             addToCart(propName, optionName) {
-                this.flyerOptions = {
-                    propName
-                }
-                this.flyerOptions.propName = optionName
+                if (!this.cart[propName]) this.cart[propName] = 0
+                    this.cart[propName] += optionName
+            },
+            removeOptions(selected) {
+                console.log(`DIV Number ${selected} selected!`);
+                console.log();
+                this.$refs.selected.style.display = "none";
             }
         }
     }
@@ -43,9 +48,7 @@
 
 
 <style scoped>
-    .flyer-property {
-        
-    }
+
     .flyer-option {
         display: inline-block;
         border: 3px solid white;
@@ -64,8 +67,5 @@
         background: white;
         color: navy;
         border: 3px  navy;
-    }
-    .flyer-option-hidden {
-        display: none;
     }
 </style>
