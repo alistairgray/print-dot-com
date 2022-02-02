@@ -13,5 +13,20 @@
                             <th>Size</th>
                         </tr>
                         <tbody>
-
+                            <tr v-for="(property, option, index) in cart" :key="index">
+                                <td>{{property}}</td>
+                                <td>{{option}}</td>
+                            </tr>
+                        </tbody>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </aside>
 </template>
+
+<script>
+    export default {
+        props: ["toggleCart","cart"]
+    }
+</script>

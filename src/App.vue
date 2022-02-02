@@ -12,7 +12,6 @@
       <div id="cart">
         <span>Cart</span>
       </div>
-      
     </header>
     <main>
       <h1>Frequent Flyers</h1>
@@ -22,13 +21,14 @@
        </router-link>
       </div>
     </main>
-    <router-view/>
+    <router-view :cart="cart"/>
   </div>
 </template>
 
 <script>
   import flyers from './json/flyers.json'
   import global from './global'
+
   export default {
     name: 'App',
     setup() {

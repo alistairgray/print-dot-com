@@ -1,9 +1,10 @@
 <template>
+    <Sidebar />
     <main>
         <h2>Choose a product to start</h2>
         <h3>{{flyers.titlePlural}}</h3>
         <div class="flyer-options-selection">
-            <div class="flyer-options-selected" v-for="property in flyers.properties" :key="property.id">Flyer {{property.slug}}: {{cart[property.slug]}}</div>
+            <div class="flyer-options-selected" v-for="property in flyers.properties" :key="property.id"><strong>Flyer {{property.slug}}:</strong> {{cart[property.slug]}}</div>
         </div>
             <div>
                 <div v-for="(property, index) in flyers.properties" :key="property.id" :selected="index" ref="index">
@@ -22,10 +23,12 @@
 </template>
 
 <script>
+    import Sidebar from '../components/Sidebar.vue'
     import Flyers from '../json/flyers.json'
     export default {
         name: 'Products',
         components: {
+            Sidebar
         },
         data() {
             return {
@@ -35,13 +38,10 @@
         },
         methods: {
             addToCart(propName, optionName) {
-                if (!this.cart[propName]) this.cart[propName] = 0
-                    this.cart[propName] += optionName
+                this.cart[propName] += optionName
             },
             removeOptions(selected) {
-                console.log(`DIV Number ${selected} selected!`);
-                console.log(this.$refs.index[selected].style.display = "none");
-                
+                this.$refs.index[selected].style.display = "none";
             }
         }
     }
@@ -63,5 +63,9 @@
         background: white;
         color: navy;
         border: 3px solid navy;
+    }
+    .flyer-options-selected {
+        border: solid yellow;
+        padding: 15px;
     }
 </style>
